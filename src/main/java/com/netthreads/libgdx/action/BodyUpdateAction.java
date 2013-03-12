@@ -24,7 +24,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -64,7 +63,6 @@ public class BodyUpdateAction extends Action
 	
 	private World world;
 	private Body body;
-	private Actor target;
 	private float pixelsPerMetre;
 	private boolean centred;
 	
@@ -107,18 +105,18 @@ public class BodyUpdateAction extends Action
 		if (centred)
 		{
 			// Adjust the actor to centre
-			target.setX((pos.x * pixelsPerMetre) - target.getWidth() / 2);
-			target.setY((pos.y * pixelsPerMetre) - target.getHeight() / 2);
+			getActor().setX((pos.x * pixelsPerMetre) - getActor().getWidth() / 2);
+			getActor().setY((pos.y * pixelsPerMetre) - getActor().getHeight() / 2);
 		}
 		else
 		{
-			target.setX(pos.x * pixelsPerMetre);
-			target.setY(pos.y * pixelsPerMetre);
+			getActor().setX(pos.x * pixelsPerMetre);
+			getActor().setY(pos.y * pixelsPerMetre);
 		}
 		
 		float angleDeg = body.getAngle() * MathUtils.radiansToDegrees;
 		
-		target.setRotation(angleDeg);
+		getActor().setRotation(angleDeg);
 		
 		return false;
 	}
