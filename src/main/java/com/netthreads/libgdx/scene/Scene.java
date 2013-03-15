@@ -89,7 +89,7 @@ public class Scene extends Stage implements Node
 	}
 
 	/**
-	 * Add scene layer ensuring it adopts the same size as the owning scene.
+	 * Add scene layer.
 	 * 
 	 * Note layer in nodes list.
 	 * 
@@ -98,9 +98,6 @@ public class Scene extends Stage implements Node
 	 */
 	public void addLayer(Layer layer)
 	{
-		layer.setWidth(this.getWidth());
-		layer.setHeight(this.getHeight());
-
 		nodes.add(layer);
 
 		addActor(layer);

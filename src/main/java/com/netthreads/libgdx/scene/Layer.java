@@ -32,6 +32,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  */
 public class Layer extends Group implements InputProcessor, Node
 {
+	
 	@Override
 	public void enter()
 	{
@@ -202,4 +203,21 @@ public class Layer extends Group implements InputProcessor, Node
 		return false;
 	}
 	
+	/**
+	 * We override the hit test for the layer to ensure it does not take part in
+	 * the search for a target. This is to stop the layer from blocking passing
+	 * on any hit tests to items on layers below it.
+	 */
+	@Override
+	public Actor hit(float x, float y, boolean touchable)
+	{
+		Actor hit = super.hit(x, y, touchable);
+		
+		if (hit == this)
+		{
+			hit = null;
+		}
+		
+		return hit;
+	}
 }
