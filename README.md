@@ -16,6 +16,10 @@ There are demos using this library here:
 
 https://github.com/alistairrutherford/libgdx-demos
 
-Build instructions here
+Build instructions here:
 
 https://github.com/alistairrutherford/netthreads-libgdx/wiki/Build-Instructions
+
+Changelog here:
+
+https://github.com/alistairrutherford/netthreads-libgdx/wiki/Changelog
