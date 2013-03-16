@@ -24,7 +24,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.netthreads.libgdx.scene.ActorEx;
 
 /**
  * Frame animation Sprite.
@@ -33,7 +32,7 @@ import com.netthreads.libgdx.scene.ActorEx;
  * library.
  * 
  */
-public class FrameSprite extends ActorEx
+public class FrameSprite extends Actor
 {
 	private TextureRegion[] frames;
 	
