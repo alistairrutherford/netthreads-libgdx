@@ -66,7 +66,7 @@ public class TransitionScene extends Scene implements TweenCallback
 	@Override
 	public void enter()
 	{
-		this.complete = false;
+		complete = false;
 		
 		// Make note of starting positions. We are going to have to reset these
 		// back when we finish.
@@ -84,7 +84,7 @@ public class TransitionScene extends Scene implements TweenCallback
 	@Override
 	public void exit()
 	{
-		this.complete = true;
+		complete = true;
 		
 		inSceneRoot.setX(inX);
 		inSceneRoot.setY(inY);
@@ -133,7 +133,7 @@ public class TransitionScene extends Scene implements TweenCallback
 		switch (eventType)
 		{
 			case COMPLETE:
-				director.setScene(this.inScene);
+				director.setScene(inScene);
 				break;
 			default:
 				break;
