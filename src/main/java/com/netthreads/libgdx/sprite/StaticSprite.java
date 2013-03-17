@@ -43,8 +43,8 @@ public class StaticSprite extends Actor
 		this.textureRegion = textureRegion;
 		
 		// Set the sprite width and height.
-		this.setWidth(textureRegion.getRegionWidth());
-		this.setHeight(textureRegion.getRegionHeight());
+		setWidth(textureRegion.getRegionWidth());
+		setHeight(textureRegion.getRegionHeight());
 	}
 	
 	@Override

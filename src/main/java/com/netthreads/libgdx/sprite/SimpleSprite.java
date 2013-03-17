@@ -40,8 +40,8 @@ public class SimpleSprite extends Group
 	{
 		staticSprite = new StaticSprite(textureRegion);
 
-		this.setWidth(staticSprite.getWidth());
-		this.setHeight(staticSprite.getHeight());
+		setWidth(staticSprite.getWidth());
+		setHeight(staticSprite.getHeight());
 
 		addActor(staticSprite);
 	}

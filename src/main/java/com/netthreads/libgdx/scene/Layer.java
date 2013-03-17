@@ -36,7 +36,7 @@ public class Layer extends Group implements InputProcessor, Node
 	@Override
 	public void enter()
 	{
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		for (int i = 0; i < size; i++)
@@ -55,7 +55,7 @@ public class Layer extends Group implements InputProcessor, Node
 	@Override
 	public void exit()
 	{
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		for (int i = 0; i < size; i++)
@@ -76,7 +76,7 @@ public class Layer extends Group implements InputProcessor, Node
 	{
 		boolean handled = false;
 		
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		int index = 0;
@@ -102,7 +102,7 @@ public class Layer extends Group implements InputProcessor, Node
 	{
 		boolean handled = false;
 		
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		int index = 0;
@@ -128,7 +128,7 @@ public class Layer extends Group implements InputProcessor, Node
 	{
 		boolean handled = false;
 		
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		int index = 0;
@@ -154,7 +154,7 @@ public class Layer extends Group implements InputProcessor, Node
 	{
 		boolean handled = false;
 		
-		SnapshotArray<Actor> list = this.getChildren();
+		SnapshotArray<Actor> list = getChildren();
 		
 		int size = list.size;
 		int index = 0;

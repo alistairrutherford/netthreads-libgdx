@@ -50,8 +50,8 @@ public class AnimatedSprite extends Group
 	{
 		frameSprite = new FrameSprite(textureRegion, rows, cols, frameDuration, looping);
 		
-		this.setWidth(frameSprite.getWidth());
-		this.setHeight(frameSprite.getHeight());
+		setWidth(frameSprite.getWidth());
+		setHeight(frameSprite.getHeight());
 		
 		addActor(frameSprite);
 	}

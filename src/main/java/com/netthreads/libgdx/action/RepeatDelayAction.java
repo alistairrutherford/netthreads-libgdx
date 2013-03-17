@@ -76,7 +76,7 @@ public class RepeatDelayAction extends Action
 	{
 		super.reset();
 		
-		this.taken = 0;
+		taken = 0;
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class RepeatDelayAction extends Action
 			}
 			
 			// Reset delay.
-			this.taken = 0;
+			taken = 0;
 		}
 		
 		return done;

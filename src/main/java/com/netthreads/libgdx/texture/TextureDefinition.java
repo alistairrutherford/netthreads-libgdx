@@ -43,9 +43,10 @@ public class TextureDefinition
 	{
 		this.name = name;
 		this.path = path;
-		this.rows = 1;
-		this.cols = 1;
-		this.animated = false;
+		
+		rows = 1;
+		cols = 1;
+		animated = false;
 	}
 	
 	/**

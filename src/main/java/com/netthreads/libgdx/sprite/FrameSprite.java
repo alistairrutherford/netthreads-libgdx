@@ -91,7 +91,7 @@ public class FrameSprite extends Actor
 	public void draw(SpriteBatch batch, float parentAlpha)
 	{
 		stateTime += Gdx.graphics.getDeltaTime();
-		currentFrame = animation.getKeyFrame(stateTime, this.looping);
+		currentFrame = animation.getKeyFrame(stateTime, looping);
 		
 		batch.draw(currentFrame, getX(), getY());
 	}

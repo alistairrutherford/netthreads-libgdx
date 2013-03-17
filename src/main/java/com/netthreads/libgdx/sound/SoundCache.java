@@ -46,8 +46,8 @@ public class SoundCache implements Disposable
 	public SoundCache()
 	{
 		// Cache.
-		this.data = new HashMap<String, Sound>();
-		this.definitions = new HashMap<String, SoundDefinition>();
+		data = new HashMap<String, Sound>();
+		definitions = new HashMap<String, SoundDefinition>();
 	}
 
 	/**

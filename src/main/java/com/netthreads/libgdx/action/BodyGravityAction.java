@@ -83,18 +83,18 @@ public class BodyGravityAction extends Action
 	@Override
 	public boolean act(float delta)
 	{
-		float gravityToApply = this.world.getGravity().y;
+		float gravityToApply = world.getGravity().y;
 		
 		if (randomise)
 		{
-			gravityToApply = gravityToApply + ((float) Math.random() * this.gravityOffset);
+			gravityToApply = gravityToApply + ((float) Math.random() * gravityOffset);
 		}
 		else
 		{
-			gravityToApply = gravityToApply + this.gravityOffset;
+			gravityToApply = gravityToApply + gravityOffset;
 		}
 		
-		this.body.applyForceToCenter(0, gravityToApply);
+		body.applyForceToCenter(0, gravityToApply);
 		
 		return false;
 	}

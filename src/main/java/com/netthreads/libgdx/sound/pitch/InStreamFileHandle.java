@@ -20,8 +20,9 @@ public class InStreamFileHandle extends FileHandle
 	
 	public InStreamFileHandle(FileHandle fileHandle)
 	{
-		this.data = null;
 		this.fileHandle = fileHandle;
+
+		data = null;
 	}
 	
 	@Override
