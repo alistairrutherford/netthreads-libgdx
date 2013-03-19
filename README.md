@@ -7,7 +7,7 @@ Extension library for LibGDX based on the Scene2d components.
 - Cocos2d-like Scenes and Layers with onEntry and onExit handling.
 - Callback action which you can chain into a Sequence to perform some task.
 - Box2D actions.
-- Event driven design.
+- Custom event routing to implement an event driven design (not compulsory).
 - Simple Cocos2d-like Scene transitions: slide in from left/right top/bottom etc.
 - Sound and texture caches.
 - Fully mavenized.
