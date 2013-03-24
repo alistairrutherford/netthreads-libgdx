@@ -94,7 +94,7 @@ public class BodyGravityAction extends Action
 			gravityToApply = gravityToApply + gravityOffset;
 		}
 		
-		body.applyForceToCenter(0, gravityToApply);
+		body.applyForceToCenter(0, gravityToApply, true);
 		
 		return false;
 	}
