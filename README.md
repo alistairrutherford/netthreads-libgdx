@@ -1,7 +1,7 @@
 netthreads-libgdx
 =================
 
-Extension library for LibGDX based on the Scene2d components.
+Extension library for LibGDX Scene2D components.
 
 - Cocos2d-like Director.
 - Cocos2d-like Scenes and Layers with onEntry and onExit handling.
