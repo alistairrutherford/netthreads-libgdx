@@ -27,7 +27,7 @@ https://github.com/alistairrutherford/netthreads-libgdx/wiki/Changelog
 NOTE
 =====
 
-There is a LibGDX version 1.x compatible instance of this library here along with an updated version of the simple-shooter demo:
+There is a LibGDX version 1.x compatible instance of this library available along with an updated version of the simple-shooter demo here:
 
 https://github.com/alistairrutherford/libgx-wip
 
