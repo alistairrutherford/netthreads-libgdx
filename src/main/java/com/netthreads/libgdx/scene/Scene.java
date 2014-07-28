@@ -1,6 +1,6 @@
 /*
  * -----------------------------------------------------------------------
- * Copyright 2012 - Alistair Rutherford - www.netthreads.co.uk
+ * Copyright 2014 - Alistair Rutherford - www.netthreads.co.uk
  * -----------------------------------------------------------------------
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.netthreads.libgdx.director.AppInjector;
 import com.netthreads.libgdx.director.Director;
 
@@ -53,12 +54,12 @@ public class Scene extends Stage implements Node
 	private static Director director = AppInjector.getInjector().getInstance(Director.class);;
 
 	/**
-	 * Constructor no parameters.
+	 * Scene inherits current width and height. 
 	 * 
 	 */
 	public Scene()
 	{
-		this(director.getWidth(), director.getHeight(), director.isStretch(), director.getSpriteBatch());
+		this(director.getWidth(), director.getHeight(), director.getSpriteBatch());
 	}
 
 	/**
@@ -66,13 +67,14 @@ public class Scene extends Stage implements Node
 	 * 
 	 * @param width
 	 * @param height
-	 * @param stretch
 	 * @param batch
 	 */
-	public Scene(int width, int height, boolean stretch, SpriteBatch batch)
+	public Scene(int width, int height, SpriteBatch batch)
 	{
-		super(width, height, stretch, batch);
+		super(new StretchViewport(width, height), batch);
 
+		getViewport().update(width, height, true);
+		
 		inputMultiplexer = new InputMultiplexer(this);
 
 		nodes = new Array<Node>(DEFAULT_LAYER_CAPACITY);

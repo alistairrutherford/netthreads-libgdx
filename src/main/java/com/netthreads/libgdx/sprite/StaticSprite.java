@@ -19,7 +19,7 @@
 
 package com.netthreads.libgdx.sprite;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -48,7 +48,7 @@ public class StaticSprite extends Actor
 	}
 	
 	@Override
-	public void draw(SpriteBatch batch, float parentAlpha)
+	public void draw(Batch batch, float parentAlpha)
 	{
 		batch.draw(textureRegion, getX(), getY());
 	}

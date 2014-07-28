@@ -1,6 +1,6 @@
 /*
  * -----------------------------------------------------------------------
- * Copyright 2012 - Alistair Rutherford - www.netthreads.co.uk
+ * Copyright 2014 - Alistair Rutherford - www.netthreads.co.uk
  * -----------------------------------------------------------------------
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ package com.netthreads.libgdx.director;
 import aurelienribon.tweenengine.Tween;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -50,13 +50,10 @@ public class Director implements Disposable
 	private static final float DEFAULT_CLEAR_COLOUR_GREEN = 0.0f;
 	private static final float DEFAULT_CLEAR_COLOUR_ALPHA = 1.0f;
 
-	private static final boolean DEFAULT_STRETCH = true;
-
 	private ActorEventSource eventSource;
 
 	private int width;
 	private int height;
-	private boolean stretch;
 
 	private Scene scene;
 
@@ -80,8 +77,6 @@ public class Director implements Disposable
 
 		// This required Graphics context.
 		spriteBatch = new SpriteBatch();
-
-		stretch = DEFAULT_STRETCH;
 
 		// Director maintains event source.
 		eventSource = new ActorEventSource();
@@ -107,7 +102,7 @@ public class Director implements Disposable
 
 		// Update View
 		Gdx.gl.glClearColor(clearColourR, clearColourB, clearColourG, clearColourA);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		if (scene != null)
 		{
@@ -193,7 +188,8 @@ public class Director implements Disposable
 
 		if (scene != null)
 		{
-			scene.setViewport(width, height, stretch);
+			scene.getViewport().setWorldSize(width, height);
+			scene.setViewport(scene.getViewport());
 		}
 	}
 
@@ -208,7 +204,8 @@ public class Director implements Disposable
 
 		if (scene != null)
 		{
-			scene.setViewport(width, height, stretch);
+			scene.getViewport().setWorldWidth(width);
+			scene.setViewport(scene.getViewport());
 		}
 	}
 
@@ -223,7 +220,8 @@ public class Director implements Disposable
 
 		if (scene != null)
 		{
-			scene.setViewport(width, height, stretch);
+			scene.getViewport().setWorldHeight(height);
+			scene.setViewport(scene.getViewport());
 		}
 	}
 
@@ -235,35 +233,15 @@ public class Director implements Disposable
 	 * @param height
 	 *            The new height.
 	 */
-	public void recalcScaleFactors(int width, int height)
+	public void resize(int width, int height)
 	{
-		scaleFactorX = (float) this.width / width;
-		scaleFactorY = (float) this.height / height;
-	}
-
-	/**
-	 * Is stretch flag set.
-	 * 
-	 * @return Stretch flag.
-	 */
-	public boolean isStretch()
-	{
-		return stretch;
-	}
-
-	/**
-	 * Set stretch flag.
-	 * 
-	 * @param stretch
-	 */
-	public void setStretch(boolean stretch)
-	{
-		this.stretch = stretch;
-
 		if (scene != null)
 		{
-			scene.setViewport(width, height, stretch);
+			scene.getViewport().update(width, height, true);
 		}
+		
+		scaleFactorX = (float) this.width / width;
+		scaleFactorY = (float) this.height / height;
 	}
 
 	/**
