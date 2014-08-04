@@ -27,6 +27,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.google.inject.Singleton;
 import com.netthreads.libgdx.event.ActorEvent;
 import com.netthreads.libgdx.event.ActorEventObserver;
@@ -52,8 +54,7 @@ public class Director implements Disposable
 
 	private ActorEventSource eventSource;
 
-	private int width;
-	private int height;
+	private Viewport viewport;
 
 	private Scene scene;
 
@@ -66,6 +67,9 @@ public class Director implements Disposable
 	private float clearColourB = DEFAULT_CLEAR_COLOUR_BLUE;
 	private float clearColourG = DEFAULT_CLEAR_COLOUR_GREEN;
 	private float clearColourA = DEFAULT_CLEAR_COLOUR_ALPHA;
+
+	private static final int DEFAULT_WIDTH = 320;
+	private static final int DEFAULT_HEIGHT = 480;
 
 	/**
 	 * Construct Director elements.
@@ -85,6 +89,9 @@ public class Director implements Disposable
 		// of the view-port.
 		scaleFactorX = 1;
 		scaleFactorY = 1;
+
+		// All scenes share the same viewport.
+		viewport = null;
 
 		// Set up tween default configuration.
 		Tween.registerAccessor(Actor.class, new ActorAccessor());
@@ -160,9 +167,9 @@ public class Director implements Disposable
 	 * 
 	 * @return The width.
 	 */
-	public int getWidth()
+	public float getWidth()
 	{
-		return width;
+		return getViewport().getWorldWidth();
 	}
 
 	/**
@@ -170,58 +177,29 @@ public class Director implements Disposable
 	 * 
 	 * @return The height.
 	 */
-	public int getHeight()
+	public float getHeight()
 	{
-		return height;
+		return getViewport().getWorldHeight();
 	}
 
 	/**
 	 * Set display width/height.
+	 * 
+	 * We need to ensure this is done when a client application is created otherwise the default viewport will be used.
 	 * 
 	 * @param width
 	 * @param height
 	 */
 	public void setWidthHeight(int width, int height)
 	{
-		this.width = width;
-		this.height = height;
-
-		if (scene != null)
+		if (viewport == null)
 		{
-			scene.getViewport().setWorldSize(width, height);
-			scene.setViewport(scene.getViewport());
+			viewport = new StretchViewport(width, height);
 		}
-	}
-
-	/**
-	 * Set display width.
-	 * 
-	 * @param width
-	 */
-	public void setWidth(int width)
-	{
-		this.width = width;
 
 		if (scene != null)
 		{
-			scene.getViewport().setWorldWidth(width);
-			scene.setViewport(scene.getViewport());
-		}
-	}
-
-	/**
-	 * Set display height.
-	 * 
-	 * @param height
-	 */
-	public void setHeight(int height)
-	{
-		this.height = height;
-
-		if (scene != null)
-		{
-			scene.getViewport().setWorldHeight(height);
-			scene.setViewport(scene.getViewport());
+			viewport.update(width, height, true);
 		}
 	}
 
@@ -235,13 +213,13 @@ public class Director implements Disposable
 	 */
 	public void resize(int width, int height)
 	{
-		if (scene != null)
-		{
-			scene.getViewport().update(width, height, true);
-		}
-		
-		scaleFactorX = (float) this.width / width;
-		scaleFactorY = (float) this.height / height;
+		setWidthHeight(width, height);
+
+		float worldWidth = viewport.getWorldWidth();
+		float worldHeight = viewport.getWorldHeight();
+
+		scaleFactorX = (float) worldWidth / width;
+		scaleFactorY = (float) worldHeight / height;
 	}
 
 	/**
@@ -367,6 +345,21 @@ public class Director implements Disposable
 	public void setClearColourA(float clearColourA)
 	{
 		this.clearColourA = clearColourA;
+	}
+
+	/**
+	 * We have to create a dummy viewport if one doesn't exist or things will crash.
+	 * 
+	 * @return The current viewport.
+	 */
+	public Viewport getViewport()
+	{
+		if (viewport == null)
+		{
+			viewport = new StretchViewport(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		}
+
+		return viewport;
 	}
 
 }

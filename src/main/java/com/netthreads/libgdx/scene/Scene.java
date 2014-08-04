@@ -23,7 +23,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.netthreads.libgdx.director.AppInjector;
 import com.netthreads.libgdx.director.Director;
 
@@ -43,38 +43,50 @@ public class Scene extends Stage implements Node
 	private InputMultiplexer inputMultiplexer;
 
 	/**
-	 * Stage elements as nodes. We need this so we can call enter and exit on actors in order to manage registration and
+	 * Scene elements as nodes. We need this so we can call enter and exit on actors in order to manage registration and
 	 * de-registration of event handlers.
+	 * 
 	 */
 	private Array<Node> nodes;
 
 	/**
 	 * The one and only director.
 	 */
-	private static Director director = AppInjector.getInjector().getInstance(Director.class);;
+	private static Director director = AppInjector.getInjector().getInstance(Director.class);
 
+	// All scenes share the same viewport.
+	Viewport viewport;
+	
 	/**
-	 * Scene inherits current width and height. 
+	 * Scene uses director view-port and batch.
 	 * 
+	 * @param viewport The scene view-port.
 	 */
 	public Scene()
 	{
-		this(director.getWidth(), director.getHeight(), director.getSpriteBatch());
+		this(director.getViewport(), director.getSpriteBatch());
 	}
 
 	/**
+	 * Scene uses director view-port.
+	 * 
+	 * @param batch The sprite batch to use.
+	 */
+	public Scene(SpriteBatch batch)
+	{
+		this(director.getViewport(), batch);
+	}
+	
+	/**
 	 * Constructor where we supply our own sprite batch.
 	 * 
-	 * @param width
-	 * @param height
+	 * @param viewport The scene view-port.
 	 * @param batch
 	 */
-	public Scene(int width, int height, SpriteBatch batch)
+	public Scene(Viewport viewport, SpriteBatch batch)
 	{
-		super(new StretchViewport(width, height), batch);
+		super(viewport, batch);
 
-		getViewport().update(width, height, true);
-		
 		inputMultiplexer = new InputMultiplexer(this);
 
 		nodes = new Array<Node>(DEFAULT_LAYER_CAPACITY);
@@ -149,5 +161,5 @@ public class Scene extends Stage implements Node
 			nodes.get(i).exit();
 		}
 	}
-	
+
 }
