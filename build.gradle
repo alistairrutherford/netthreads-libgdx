@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+apply plugin: 'maven-publish' // gradle publishToMavenLocal
+
+group = 'com.netthreads.libgdx'
+version = '1.0.5-SNAPSHOT'
+
+description = """Netthreads LibGDX Extensions"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+	 mavenLocal()
+	 mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.google.inject', name: 'guice', version:'3.0', classifier:'no_aop'
+    compile group: 'com.badlogicgames.gdx', name: 'gdx', version:'1.9.4'
+    compile group: 'com.badlogicgames.gdx', name: 'gdx-box2d', version:'1.9.4'
+		compile "aurelienribon:tweenengine:6.3.3"
+		compile "aurelienribon:tweenengine:6.3.3:sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+jar {
+  from('src/main/java') {
+    include '**/*.java'
+		include '**/*.xml'
+  }
+}
