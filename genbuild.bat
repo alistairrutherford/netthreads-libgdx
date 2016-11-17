@@ -1,0 +1,1 @@
+gradlew init --type pom
