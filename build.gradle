@@ -34,7 +34,7 @@ publishing {
 
 jar {
   from('src/main/java') {
-    include '**/*.java'
-		include '**/*.xml'
+      include '**/*.java'
+      include '**/*.xml'
   }
 }
