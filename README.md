@@ -26,7 +26,7 @@ https://github.com/alistairrutherford/netthreads-libgdx/wiki/Changelog
 
 License
 --------
-[Copyright - Alistair Rutherford 2013 - www.netthreads.co.uk]
+[Copyright - Alistair Rutherford 2016 - www.netthreads.co.uk]
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
